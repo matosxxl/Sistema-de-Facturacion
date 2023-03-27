@@ -12,6 +12,11 @@ namespace Facturacion
         private List<Articulo> articulosFactura;
 
         //PROPIEDAD
+        public List<Articulo> FacturaLista
+        {
+            get { return articulosFactura; }
+        }
+
         public Articulo ArticulosFactura
         {
             get { return ArticulosFactura; }

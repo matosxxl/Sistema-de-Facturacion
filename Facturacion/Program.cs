@@ -1,93 +1,66 @@
-﻿//string vOpcion;
-//bool cancel = false;
+﻿using Facturacion;
 
-//Console.WriteLine("Factura de supermercado: \n");
+bool cancel = false;
+int idArt, cantidad;
 
-//while (cancel == false)
-//{
-//    Console.WriteLine("---------------------------------------------------------------------------------------------------------------");
-
-//    Console.WriteLine("Elija el articulo que desea agregar a su compra (1 - 10) (Si desea parar de agregar articulos seleccione 0): ");
-//    Console.WriteLine("[1]  - Leche \n[2]  - Huevos \n[3]  - Pan \n[4]  - Jamon \n[5]  - Queso \n[6]  - Guineos \n[7]  - Jugo \n[8]  - Refresco \n[9]  - Manzanas \n[10] - Piña");
-//    Console.WriteLine("---------------------------------------------------------------------------------------------------------------");
-
-//    vOpcion = Console.ReadLine();
-
-//    switch (vOpcion)
-//    {
-//        case "1":
-//            Console.WriteLine("ARTICULO: LECHE");
-//            Console.WriteLine();
-//            break;
-
-//        case "2":
-//            Console.WriteLine("ARTICULO: HUEVOS");
-//            Console.WriteLine();
-//            break;
-
-//        case "3":
-//            Console.WriteLine("ARTICULO: PAN");
-//            Console.WriteLine();
-//            break;
-
-//        case "4":
-//            Console.WriteLine("ARTICULO: JAMON");
-//            Console.WriteLine();
-//            break;
-
-//        case "5":
-//            Console.WriteLine("ARTICULO: QUESO");
-//            Console.WriteLine();
-//            break;
-
-//        case "6":
-//            Console.WriteLine("ARTICULO: GUINEOS");
-//            Console.WriteLine();
-//            break;
-
-//        case "7":
-//            Console.WriteLine("ARTICULO: JUGOS");
-//            Console.WriteLine();
-//            break;
-
-//        case "8":
-//            Console.WriteLine("ARTICULO: REFRESCOS");
-//            Console.WriteLine();
-//            break;
-
-//        case "9":
-//            Console.WriteLine("ARTICULO: MANZANAS");
-//            Console.WriteLine();
-//            break;
-
-//        case "10":
-//            Console.WriteLine("ARTICULO: PIÑA");
-//            Console.WriteLine();
-//            break;
-
-//        case "0":
-//            cancel = true;
-//            break;
-
-//        default:
-//            Console.WriteLine("No ha seleccionado una opcion valida");
-//            break;
-
-//    }
-//}
-
-
-using Facturacion;
-
+List<Articulo> listaArt = new List<Articulo>();
 Articulo objArticulo;
+Factura objFactura = new Factura();
 
-void CrearArticulos()
+CrearArticulos(72.99, "Leche", 1);
+CrearArticulos(8, "Huevos", 2);
+CrearArticulos(81.99, "Pan", 3);
+CrearArticulos(238.99, "Jamon", 4);
+CrearArticulos(183.99, "Queso", 5);
+CrearArticulos(5, "Guineos", 6);
+CrearArticulos(123.99, "Jugo", 7);
+CrearArticulos(89.00, "Refresco", 8);  
+CrearArticulos(7, "Manzanas", 9);
+CrearArticulos(92, "Piña", 10);
+
+//Inicio del programa
+
+Console.WriteLine("SISTEMA DE FACTURACION: \n");
+
+while (cancel == false)
 {
-    List<Articulo> arregloArticulos = new List<Articulo>();
+    Console.WriteLine("---------------------------------------------------------------------------------------------------------------");
+    Console.WriteLine("Elija el articulo que desea agregar a su compra (1 - 10) (Si desea parar de agregar articulos seleccione un numero diferente de las opciones): ");
+    Console.WriteLine("[1]  - Leche \n[2]  - Huevos \n[3]  - Pan \n[4]  - Jamon \n[5]  - Queso \n[6]  - Guineos \n[7]  - Jugo \n[8]  - Refresco \n[9]  - Manzanas \n[10] - Piña");
+    Console.WriteLine("---------------------------------------------------------------------------------------------------------------\n");
+        
+    idArt = Convert.ToInt32(Console.ReadLine());
+        
+    if( idArt < 1 || idArt > listaArt.Count)
+    {
+        cancel = true;
+        break;
+    }
 
-    objArticulo = new Articulo(10, "Guineos", 1);
-    arregloArticulos.Add(objArticulo);
-    objArticulo = new Articulo(10, "Manzanas", 2);
-    arregloArticulos.Add(objArticulo);
+    objArticulo = listaArt.Find( articulo => articulo.Id == idArt );
+
+    Console.WriteLine($"ARTICULO: {objArticulo.Nombre}");
+    Console.WriteLine("Ingrese la cantidad que desea:\n");
+    cantidad = Convert.ToInt32(Console.ReadLine());
+    objArticulo.Cantidad = cantidad;
+
+    objFactura.ArticulosFactura = objArticulo;
+
 }
 
+ImprimirFactura();
+
+void CrearArticulos(double precio, string nombre, int id)
+{
+    objArticulo = new Articulo(precio, nombre, id);
+    listaArt.Add(objArticulo);
+}
+
+void ImprimirFactura()
+{
+    Console.WriteLine("A continuacion los objetos de su factura: ");
+    foreach (var articulo in objFactura.FacturaLista)
+    {
+        Console.WriteLine($"{articulo.Nombre}: {articulo.Cantidad} === {articulo.Precio * articulo.Cantidad}");
+    }
+}

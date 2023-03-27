@@ -12,7 +12,7 @@ namespace Facturacion
         //ATRIBUTOS
 
         private int id;
-        private int precio;
+        private double precio;
         private string nombre;
         private int cantidad;
 
@@ -24,7 +24,7 @@ namespace Facturacion
             set { id = value; }
         }
 
-        public int Precio
+        public double Precio
         {
             get { return precio; }
             set { precio = value; }
@@ -44,14 +44,14 @@ namespace Facturacion
 
         //CONSTRUCTORES
 
-        public Articulo( int precio, string nombre, int id)
+        public Articulo( double precio, string nombre, int id)
         {
             this.Precio = precio;
             this.Nombre = nombre;
             this.Id = id;
         }
 
-        public Articulo(int precio, string nombre, int id, int cantidad)
+        public Articulo(double precio, string nombre, int id, int cantidad)
         {
             this.Precio = precio;
             this.Nombre = nombre;
