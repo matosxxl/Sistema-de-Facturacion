@@ -25,8 +25,13 @@ Console.WriteLine("SISTEMA DE FACTURACION: \n");
 while (cancel == false)
 {
     Console.WriteLine("---------------------------------------------------------------------------------------------------------------");
-    Console.WriteLine("Elija el articulo que desea agregar a su compra (1 - 10) (Si desea parar de agregar articulos seleccione un numero diferente de las opciones): ");
-    Console.WriteLine("[1]  - Leche \n[2]  - Huevos \n[3]  - Pan \n[4]  - Jamon \n[5]  - Queso \n[6]  - Guineos \n[7]  - Jugo \n[8]  - Refresco \n[9]  - Manzanas \n[10] - Piña");
+    Console.WriteLine("Elija el articulo que desea agregar a su compra (1 - 10) (Si desea parar de agregar articulos seleccione un numero diferente de las opciones): \n");
+
+    foreach (Articulo articulo in listaArt)
+    {
+        Console.WriteLine($"[{articulo.Id}] - {articulo.Nombre} || Precio: {articulo.Precio}$ \n");
+    }
+
     Console.WriteLine("---------------------------------------------------------------------------------------------------------------\n");
         
     idArt = Convert.ToInt32(Console.ReadLine());
