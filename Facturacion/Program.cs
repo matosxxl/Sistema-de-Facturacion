@@ -18,6 +18,7 @@ while (cancel == false)
 {
     Console.WriteLine("---------------------------------------------------------------------------------------------------------------");
     Console.WriteLine($"Elija el articulo que desea agregar a su compra (1 - {listaArt.Count}) \n(Si desea parar de agregar articulos seleccione un numero diferente de las opciones): \n");
+    Console.WriteLine("Elija el articulo que desea agregar a su compra (1 - 10) (Si desea parar de agregar articulos seleccione un numero diferente de las opciones): \n");
 
     foreach (Articulo articulo in listaArt)
     {
@@ -114,4 +115,5 @@ void ImprimirFactura()
     Console.WriteLine("");
     Console.WriteLine($"Compra realizada: {fecha.ToShortDateString()} {fecha.ToShortTimeString()}");
     Console.WriteLine($"Cliente: {nombre}");
+}
 }
